@@ -1,25 +1,22 @@
 class productManager {
     constructor(nombre, descripcion, precio, thumbnail, code, stock) {
-        productManager.id += 1;
         this.products = [];
         this.nombre = nombre; 
         this.descripcion = descripcion;
         this.precio = precio;
         this.thumbnail = thumbnail;
-        this.code = productManager.id;
+        this.code = code;
         this.stock = stock;
     }
     getProductos() {
         return this.products;
     }
     addProductos(product) {
-        let barcode = this.products.find((code) => product.code === code);
-        product = { ...product, id: productManager.id };
-        if (barcode) {
-            return console.log('El producto con este codigo ${product.code} ya existe')
-        } else {
+        if (this.products.find((prod) => prod.code === product.code))
+        return console.log(`El producto con este codigo ${product.code} ya existe`)
+        else {
+            product.id = this.getProductos().length + 1;
             this.products.push(product);
-            productManager.id++;
         }
     }
     getProductoById(productId) {
@@ -28,7 +25,7 @@ class productManager {
             MyProduct = productId; 
         }
         if ( MyProduct === null ) {
-            return console.log ("No se encontro el producto")
+            return console.log (`No se encontro el producto`)
         } else {
             return MyProduct;
         }
