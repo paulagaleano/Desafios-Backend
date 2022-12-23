@@ -12,7 +12,7 @@ class productManager {
         return this.products;
     }
     addProductos(product) {
-        if (this.products.find((prod) => prod.code === product.code))
+        if (this.getProductos().find((prod) => prod.code === product.code))
         return console.log(`El producto con este codigo ${product.code} ya existe`)
         else {
             product.id = this.getProductos().length + 1;
